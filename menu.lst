@@ -1,0 +1,23 @@
+# run Windows 11
+  
+title Windows 11 - RAMDISK
+find --set-root --ignore-floppies /win11.vhd
+map --mem /win11.vhd (hd0)
+map --hook
+root (hd0,0)
+chainloader /bootmgr
+ 
+title Windows 11 - FILEDISK
+find --set-root --ignore-floppies /win11.vhd
+map /win11.vhd (hd0)
+map --hook
+root (hd0,0)
+chainloader /bootmgr
+
+# Install Windows 11 from ISO Image
+
+title Windows 11 Setup load ISO Image
+map /win11.vhd (hd0)
+map --mem /win11.iso (0xff)
+map --hook
+chainloader (0xff)  
